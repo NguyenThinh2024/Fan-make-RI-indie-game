@@ -1,7 +1,9 @@
-db.GU_info.insertOne({
+db.GU_info.insertMany([
+{
   "_id": ObjectId("64b8fcd9e4b0a1d23c123456"),
   "code": "nguyet_quang_gu",
   "name": "Nguyệt Quang Cổ",
+  "dao": "Light",
   "tier": 1,
   "category": "CongPhat",
   "food": "Canh Hoa Nguyet Lan",
@@ -10,21 +12,85 @@ db.GU_info.insertOne({
     "amount": 1
   },
   "description": "Bắn ra 1 đạo sáng có khả năng cắt chém gây sát thương.",
-  "drawbacks": "Tiêu hao nhiều chân nguyên.",
+  "drawbacks": "Tiêu hao nhiều chân nguyên. ",
   "effect": {
     "damage": {
       "type": "magical",
       "value": 50,
-      "scalingRatio": 0.2
+      "scalingRatio": 0.2,
+      "cooldownSec": 6,
+      "areaType": "cone"
     }
   },
-  "critChance": 0.05,
+  "stats": {
+    "durability": 100,
+    "willpower": 50,
+    "maxWillpower": 50,
+    "critChance": 0.05
+  }
+},
+{
+  "_id": ObjectId("..."),
+  "code": "Ngoc_bi_gu",
+  "name": "Ngọc Bì Cổ",
+  "dao": "Earth",
+  "tier": 1,
+  "category": "PhongThu",
+  "food": "Ngọc các loại",
+  "consumption" : {
+    "type": "onUse",
+    "amount": 6.4
+  },
+  "description": "Tạo ra 1 vầng sáng màu xanh ngọc bao quanh người dùng.",
+  "drawbacks": "Tiêu tốn nhiều chân nguyên.",
+  "effect": {
+             "shield": {
+    			"hp": 300,
+    			"type": "jade_barrier",
+    			"absorbRate": 1.0, 
+			"active": false
+  },
+  "durationSec": 25,
+  "cooldownSec": 50
+  }
+  },
+  "stats": {
+    "durability": 100,
+    "willpower": 50,
+    "maxWillpower": 50
+  }
+},
+{
+  "_id": ObjectId("..."),
+  "code": "tieu_quang_gu",
+  "name": "Tiểu Quang Cổ",
+  "dao": "Light",
+  "tier": 1,
+  "category": "PhuTro",
+  "food": "Cánh Hoa Nguyệt Lan",
+  "consumption" : {
+    "type": "onUse",
+    "amount": 0.5
+  },
+  "description": "Tăng cường sức sát thương cho Nguyệt Quang Cổ.",
+  "drawbacks": "Không thể kích hoạt đơn lẻ",
+  "effect": {
+             "buff": {
+			"targetGu": "nguyet_quang_gu",
+			"stat": "damge", 
+			"scalingRatio": 0.2,
+			
+  },
   "cooldownSec": 6,
-  "areaType": "cone",
+  "check_GU": true,
+  }
+  },
   "stats": {
     "durability": 100,
     "willpower": 50,
     "maxWillpower": 50
   }
 }
+]
 )
+s
