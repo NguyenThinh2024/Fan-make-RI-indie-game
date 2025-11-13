@@ -1,0 +1,316 @@
+OK — tôi làm luôn, thẳng, ngắn gọn, đủ xài cho dev bắt tay code ngay. Dưới đây là thiết kế MongoDB cho ** hệ thống Cổ (Cổ chân nhân)**, kèm document mẫu, JSON Schema validation, gợi ý index + vài query/aggregation hữu dụng, và cách mô hình hoá các subtype (Công Phạt, Phòng Ngự, Tồn Trữ, Di Chuyển, Trinh Sát, Phụ Trợ).
+
+# 1) Ý tưởng chính (tóm tắt)
+
+* Mỗi **Cổ** là 1 document.
+* Có field chung (name, tier/rarity, category, food, consumption, description, drawbacks, recipe, createdAt, version).
+* `category` quyết định subdocument `effect` khác nhau (polymorphic). Dùng discriminator pattern: một field `category` + `effect` object chứa các thuộc tính chuyên dụng.
+* `recipe` lưu công thức luyện: nguyên liệu (itemId + qty), method, baseSuccessRate, time, requiredLevel, fuelCost, possibleOutputs (khi có tỉ lệ tạo ra cổ khác).
+* Movement/Di chuyển: mô hình hoá bằng `movementType` + các tham số (speedMultiplier, maxSpeed, cooldown, range, staminaCost, teleport=true/false, blinkRange, etc.) — linh hoạt cho bay, chạy nhanh, dịch chuyển tức thời.
+
+---
+
+# 2) Schema mẫu (JSON-like) — document example
+
+```json
+{
+  "_id": ObjectId("..."),
+  "name": "Cổ Phi Thiên",
+  "tier": "rare",
+  "category": "DiChuyen",          // CôngPhạt | PhongNgu | TonTru | DiChuyen | TrinhSat | PhuTro
+  "food": "Huyết Án",             // tên thức ăn required (null nếu none)
+  "consumption": { "type": "onUse", "amount": 1 }, // or "passive", "equip"
+  "description": "Cho phép cất cánh trong 10s.",
+  "drawbacks": "Giảm DEF 10% trong 5s sau khi hạ cánh.",
+  "effect": {                      // nội dung tuỳ loại
+    "movementType": "fly",         // fly | sprint | blink | teleport | dash
+    "durationSec": 10,
+    "speedMultiplier": 1.6,
+    "maxAltitude": 50,
+    "cooldownSec": 30,
+    "staminaCost": 20
+  },
+  "recipe": {
+    "ingredients": [
+      { "itemId": "mat1", "qty": 3 },
+      { "itemId": "matFeather", "qty": 1 }
+    ],
+    "method": "distill",
+    "baseSuccessRate": 0.75,
+    "timeSec": 180,
+    "requiredLevel": 10,
+    "fuelCost": { "type": "coal", "qty": 2 },
+    "possibleResults": [
+      { "itemId": "Cổ Phi Thiên", "chance": 0.8 },
+      { "itemId": "Cổ Tàn Phế", "chance": 0.2 }
+    ],
+    "version": 1
+  },
+  "stats": { "durability": 100, "weight": 2.0 },
+  "tags": ["mobile","shortbuff"],
+  "createdAt": ISODate("2025-11-10T08:00:00Z"),
+  "updatedAt": ISODate("2025-11-10T08:00:00Z"),
+  "meta": { "dropSources": ["bossA","dungeonX"], "stackable": false }
+}
+```
+
+---
+
+# 3) Cấu trúc `effect` theo `category` (chi tiết)
+
+* **CôngPhạt (Damage)**
+
+  ```json
+  "effect": {
+    "damage": { "type": "physical"|"magical"|"pure", "value": 50, "scaling": { "stat": "ATK", "ratio": 0.2 } },
+    "critChance": 0.05,
+    "cooldownSec": 6,
+    "area": { "type": "cone"|"circle", "radius": 3, "angle": 60 }
+  }
+  ```
+
+  * `value` là damage base (flat) — thêm `scaling` nếu cần theo stat người chơi.
+
+* **PhòngNgự (Defense)**
+
+  ```json
+  "effect": {
+    "defenseBonus": { "flat": 30, "percent": 0.12 }, 
+    "durationSec": 20,
+    "cooldownSec": 60,
+    "resistances": { "fire": 0.1, "ice": 0.05 } 
+  }
+  ```
+
+* **TồnTrữ (Storage)**
+
+  ```json
+  "effect": {
+    "capacity": 10,                // số vật/đơn vị
+    "resourceTypes": ["herb","blood"], // hoặc "any"
+    "autoPreserve": true,
+    "preserveRate": 0.8            // % giảm hỏng
+  }
+  ```
+
+* **DiChuyen (Movement)** — key part:
+
+  ```json
+  "effect": {
+    "movementType": "fly"|"sprint"|"blink"|"teleport"|"dash",
+    "speedMultiplier": 1.5,        // cho sprint/fly
+    "maxSpeed": 12,                // nếu muốn cap absolute
+    "durationSec": 8,
+    "cooldownSec": 40,
+    "staminaCost": 15,
+    // dành cho blink/teleport:
+    "range": 20,
+    "areaAffect": false,
+    "targeted": false,             // teleport có target point hay tự chọn
+    "teleportAccuracyPenalty": 0.1 // nếu cần
+  }
+  ```
+
+  * **Quyết định**: model movement bằng `movementType` + tham số. Không chỉ lưu 1 số tốc độ; cho phép mix: multiplier để scale theo baseSpeed của nhân vật, `maxSpeed` để cap, `range` cho blink/teleport, `duration` cho buff dạng tạm thời, `cooldown` & `staminaCost` cho cân bằng.
+
+* **TrinhSat (Scout)**
+
+  ```json
+  "effect": {
+    "scoutRange": 60,        // unit game meters
+    "revealDurationSec": 12,
+    "detectStealth": true,
+    "revealType": "full"|"partial"  // full = hiện vị trí, partial = chỉ phát hiện
+  }
+  ```
+
+* **PhuTro (Support)** — nhiều loại, nên model dưới dạng subtypes:
+
+  ```json
+  "effect": {
+    "supportType": "healing"|"craftBoost"|"smoke"|"light"|"buff",
+    "healing": { "hp": 200, "overTime": false },
+    "craftBoost": { "extraSuccessRate": 0.15, "durationSec": 3600 },
+    "smoke": { "radius": 5, "durationSec": 6, "blocksVision": true },
+    "light": { "luminosity": 1.0, "radius": 12 },
+    "buff": { "stat": "crit", "valuePercent": 0.10, "durationSec": 30 }
+  }
+  ```
+
+  * Lời khuyên: `supportType` làm discriminator; các thuộc tính khác optional.
+
+---
+
+# 4) Recipe / luyện chế (chi tiết)
+
+`recipe` structure như ví dụ trên. Một số lưu ý:
+
+* Lưu `baseSuccessRate` float 0..1.
+* Nếu có skill/bonus ảnh hưởng, thì final success = base * (1 + sum(bonuses)) và cap ở 0..1.
+* Nếu recipe có nhiều kết quả, lưu array `possibleResults` (itemId, chance).
+* Hỗ trợ `modifiers` — ví dụ có phụ trợ "tăng xác suất" thì `modifierKey` link tới effect loại `craftBoost`.
+
+Example recipe document:
+
+```json
+"recipe": {
+  "ingredients":[{"itemId":"matA","qty":2},...],
+  "method":"grind",
+  "baseSuccessRate":0.5,
+  "timeSec":120,
+  "requiredSkill":"Alchemy",
+  "requiredLevel":8
+}
+```
+
+---
+
+# 5) JSON Schema validation (MongoDB validator)
+
+```json
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["name","category","effect","recipe"],
+    "properties": {
+      "name": {"bsonType":"string"},
+      "category":{"enum":["CongPhat","PhongNgu","TonTru","DiChuyen","TrinhSat","PhuTro"]},
+      "effect":{"bsonType":"object"},
+      "recipe":{"bsonType":"object"},
+      "tier":{"bsonType":"string"},
+      "createdAt":{"bsonType":"date"},
+      "updatedAt":{"bsonType":"date"}
+    }
+  }
+}
+```
+
+(Nên mở rộng để validate theo `category` bằng application-level hoặc MongoDB 6.0 pipeline validators — đơn giản nhất: validate chung, còn logic subtype để app kiểm tra.)
+
+---
+
+# 6) Index + performance
+
+* Index cơ bản:
+
+  * `db.co_items.createIndex({ name: 1 })`
+  * `db.co_items.createIndex({ category: 1, tier: 1 })`
+  * `db.co_items.createIndex({ "meta.dropSources": 1 })`
+  * `db.co_items.createIndex({ "recipe.ingredients.itemId": 1 })` (tìm công thức dùng nguyên liệu nào)
+* Nếu search tên fuzzy thì dùng Atlas Search hoặc bổ sung `name_ngram` field.
+* Sử dụng TTL index cho item temporary nếu cần.
+
+---
+
+# 7) Một số query/aggregation hữu dụng
+
+* Tìm tất cả cổ DiChuyen có blink/teleport:
+
+```js
+db.co_items.find({
+  category: "DiChuyen",
+  "effect.movementType": { $in: ["blink","teleport"] }
+})
+```
+
+* Tính damage effective (flat + scaling theo ATK) — ví dụ trong aggregation:
+
+```js
+db.co_items.aggregate([
+  { $match: { category: "CongPhat" } },
+  { $project: {
+      name:1,
+      baseDamage: "$effect.damage.value",
+      scalingRatio: "$effect.damage.scaling.ratio",
+      expectedDamage: { $add: [ "$effect.damage.value", { $multiply: [ "$effect.damage.scaling.ratio", 100 /* player ATK */ ] } ] }
+  }}
+])
+```
+
+(thay 100 bằng biến do app truyền)
+
+* Tìm craftable bằng 1 nguyên liệu:
+
+```js
+db.co_items.find({"recipe.ingredients.itemId": "matFeather"})
+```
+
+---
+
+# 8) Versioning & migrations
+
+* Add `recipe.version` và `schemaVersion` fields. Khi thay đổi cách tính, tăng `schemaVersion`. Migrate step-by-step bằng migration script offline.
+
+---
+
+# 9) Vài quyết định thiết kế & lời khuyên cân bằng (ngắn)
+
+* **Movement**: dùng `speedMultiplier` + `maxSpeed` cho buff kiểu tăng tốc/flight; dùng `range` + `targeted` cho blink/teleport. Tại server side khi áp dụng effect: finalSpeed = baseSpeed * speedMultiplier, nhưng clamp <= maxSpeed. Teleport dùng range check (line-of-sight) + cooldown + resourceCost. Đừng lưu một số duy nhất “tốc độ” vì cần cả duration/cooldown/cost để cân bằng.
+* **Phụ trợ**: tách `supportType` + subfields. Giúp UI dễ filter (ví dụ filter all healing supports). Nếu support có nhiều chức năng (ví dụ heal + buff), lưu array `supportEffects` để cho phép stack nhiều effect.
+* **Storage**: nếu cần tính toán trọng lượng/volume, lưu `capacity` + unit (eg. weightUnits). Nếu muốn chứa nhiều loại resource, add `resourceTypes` hoặc `allowedItemClasses`.
+* **Craft bonus stacking**: define max cap (ví dụ successRate cap 95%) để tránh phá game.
+
+---
+
+# 10) Ví dụ documents (3 ngắn gọn)
+
+1. Công Phạt
+
+```json
+{
+  "name":"Cổ Lôi Trảm",
+  "category":"CongPhat",
+  "effect":{
+    "damage":{"type":"physical","value":120,"scaling":{"stat":"STR","ratio":0.25}},
+    "area":{"type":"circle","radius":2},
+    "cooldownSec":8
+  },
+  "recipe":{...}
+}
+```
+
+2. Phụ Trợ (chữa trị)
+
+```json
+{
+  "name":"Cổ Tửu Hồi",
+  "category":"PhuTro",
+  "effect":{
+    "supportType":"healing",
+    "healing":{"hp":300,"overTime":true,"durationSec":10}
+  }
+}
+```
+
+3. Trinh Sát
+
+```json
+{
+  "name":"Cổ Mắt Đêm",
+  "category":"TrinhSat",
+  "effect":{
+    "scoutRange":80,
+    "revealDurationSec":15,
+    "detectStealth":true
+  }
+}
+```
+
+---
+
+# 11) Checklist dev — việc cần làm ngay
+
+* Tạo collection `co_items` với JSON schema validator cơ bản.
+* Implement application-level subtype validation (check `effect` fields based on `category`).
+* Tạo index: `name`, `category`, `recipe.ingredients.itemId`.
+* Implement server logic khi apply `effect` (movement: apply multiplier + clamp; teleport: check LOS + range + cooldown).
+* Thiết kế UI mapping: cho `DiChuyen` show `movementType` và các param, cho `PhuTro` show subtype list.
+
+---
+
+Muốn tôi chuyển thành:
+
+1. file JSON Schema hoàn chỉnh để ném vô `db.createCollection(...)`?
+2. hoặc migration script + sample seed (50 items mẫu)?
+
+Chọn 1 hoặc 2, tôi đẩy luôn — làm nhanh, dơ máu, xong.

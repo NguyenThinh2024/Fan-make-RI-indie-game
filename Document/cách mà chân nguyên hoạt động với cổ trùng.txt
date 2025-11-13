@@ -1,0 +1,31 @@
+Nguyên lý được đề cập trong đoạn văn là Phẩm chất Chân Nguyên tăng lên theo Cảnh giới (Tiểu Giai), dẫn đến hiệu suất sử dụng Chân Nguyên cũng tăng lên theo cấp số nhân (gấp đôi).
+
+Nói cách khác: Chân Nguyên có phẩm chất cao hơn thì chứa đựng năng lượng lớn hơn.
+
+Chân Nguyên Xanh Sẫm (Đỉnh phong) > Chân Nguyên Xanh Đậm (Cao Giai) > Chân Nguyên Xanh Biếc (Trung Giai) > Chân Nguyên Xanh Lục (Sơ Giai)
+
+Giải thích Tỷ lệ:
+
+Câu cuối cùng đã tóm tắt chính xác mối quan hệ này:
+"Một thành chân nguyên xanh sẫm tương đương với hai thành xanh đậm, bốn thành xanh biếc, tám thành xanh lục."
+
+Phẩm chất Chân Nguyên (Cảnh giới)		Tỷ lệ sức mạnh so với Xanh Lục		Tỷ lệ tiêu hao cho 1 lần Nguyệt Quang Cổ
+Xanh Lục (Sơ Giai),				1,					1 thành (theo đề bài)
+Xanh Biếc (Trung Giai),				2,					1/2 thành
+Xanh Đậm (Cao Giai),				4,					1/4 thành
+Xanh Sẫm (Đỉnh Phong),				8,					1/8 thành
+
+**Lý do tiêu hao giảm:** Vì năng lượng chứa trong Chân Nguyên phẩm chất cao gấp đôi, nên bạn chỉ cần dùng **một nửa số lượng (thành)** Chân Nguyên phẩm chất cao để đạt được cùng một lượng năng lượng cần thiết cho việc kích hoạt Nguyệt Quang Cổ.
+
+---
+
+## 📊 Minh Họa Tiêu Hao Chân Nguyên
+
+Giả sử tổng lượng Chân Nguyên của bạn trong Không Khiếu (Aperture) là **4.4 thành**.
+
+Cảnh Giới,	Phẩm chất Chân Nguyên,	Tỷ lệ sức mạnh (so với Xanh Lục),	Tiêu hao cho 1 lần Nguyệt Quang Cổ,	Lượng Chân Nguyên còn lại (từ 4.4 thành)
+Sơ Giai		Xanh Lục			1				1.0 thành				4.4−1.0=3.4 thành
+Trung Giai	Xanh Biếc			2				0.5 thành (1/2 của 1.0)			4.4−0.5=3.9 thành
+Cao Giai	Xanh Đậm			4				0.25 thành (1/2 của 0.5)		4.4−0.25=4.15 thành
+Đỉnh Phong	Xanh Sẫm			8				0.125 thành (1/2 của 0.25)		4.4−0.125=4.275 thành
+**Kết luận:** Cổ Sư càng đạt đến cảnh giới cao (Chân Nguyên phẩm chất càng cao), họ càng có thể thôi động Cổ nhiều lần hơn với cùng một lượng Chân Nguyên dự trữ (4.4 thành).
