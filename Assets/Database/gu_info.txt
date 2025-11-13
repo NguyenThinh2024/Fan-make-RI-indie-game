@@ -1,0 +1,30 @@
+db.GU_info.insertOne({
+  "_id": ObjectId("64b8fcd9e4b0a1d23c123456"),
+  "code": "nguyet_quang_gu",
+  "name": "Nguyệt Quang Cổ",
+  "tier": 1,
+  "category": "CongPhat",
+  "food": "Canh Hoa Nguyet Lan",
+  "consumption": {
+    "type": "onUse",
+    "amount": 1
+  },
+  "description": "Bắn ra 1 đạo sáng có khả năng cắt chém gây sát thương.",
+  "drawbacks": "Tiêu hao nhiều chân nguyên.",
+  "effect": {
+    "damage": {
+      "type": "magical",
+      "value": 50,
+      "scalingRatio": 0.2
+    }
+  },
+  "critChance": 0.05,
+  "cooldownSec": 6,
+  "areaType": "cone",
+  "stats": {
+    "durability": 100,
+    "willpower": 50,
+    "maxWillpower": 50
+  }
+}
+)
