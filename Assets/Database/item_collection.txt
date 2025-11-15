@@ -1,0 +1,53 @@
+db.item_collection.insertMany([
+{
+	"code": "nguyen_thach",
+	"name": "Nguyên Thạch",
+	"type": "currency",
+	"tags": ["energy", "craft"]
+	"effect": {
+    			"type": "restoreEnergy",    
+    			"value": 50                   
+  		},
+	"usableAsResource": true,
+	"stackable": true,
+  	"maxStack": 1000
+}, 
+{
+	"code": "canh_hoa_nguyet_lan",
+	"name": "Cánh Hoa Nguyệt Lan",
+	"type": "food_gu",
+	"tags": ["herb"],
+	"effect": {
+			"type": "restoreDurability",
+			"value": 100,
+		   },
+	"durability": 100,
+	"brokenSpeed": 0.5,
+ 	"usableAsResource": true,
+ 	"stackable": true,
+  	"maxStack": 100,
+	"pice": 0.1
+},
+{
+	"code": "vong_ngoc_bich",
+	"name": "Vòng Ngọc Bích",
+	"type": "material",
+	"tags": ["jade", "craft", "gu_food"],
+ 	"usableAsResource": true,	
+ 	"stackable": flase,
+  	"maxStack": 1,
+ 	"pice": 100
+},
+{
+	"code": "bun",
+	"name": "Bùn",
+	"type": "gu_food",
+	"tags": ["mud"],
+ 	"durability": 100,
+ 	"brokenSpeed": 0.5,
+ 	"usableAsResource": true,
+ 	"stackable": true,
+  	"maxStack": 10
+}
+]
+)
