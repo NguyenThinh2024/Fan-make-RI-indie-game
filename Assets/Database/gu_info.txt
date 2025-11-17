@@ -17,7 +17,7 @@ db.GU_info.insertMany([
       "type": "magical",
       "value": 50,
       "scalingRatio": 0.2,
-      "cooldownSec": 6,
+      "cooldownSec": 2.0,
       "areaType": "cone"
     }
   },
@@ -31,7 +31,7 @@ db.GU_info.insertMany([
   }
 },
 {
-  "code": "Ngoc_bi_gu",
+  "code": ngoc_bi_gu",
   "name": "Ngọc Bì Cổ",
   "dao": "Earth",
   "tier": 1,
@@ -48,7 +48,7 @@ db.GU_info.insertMany([
   "drawbacks": "Tiêu tốn nhiều chân nguyên.",
   "effect": {
              "shield": {
-    			"hp": 300,
+    			"hp": 100,
     			"type": "jade_barrier",
     			"absorbRate": 1.0,
 			"scalingRatio": 0.2, 
@@ -62,7 +62,7 @@ db.GU_info.insertMany([
     "willpower": 50,
     "maxWillpower": 50,
     "hunger": 0,
-    "hungerSpeed": 1.5
+    "hungerSpeed": 0.5
   }
 },
 {
@@ -82,8 +82,7 @@ db.GU_info.insertMany([
              "buff": {
 			"targetGu": "nguyet_quang_gu",
 			"stat": "damage", 
-			"scalingRatio": 0.2,
-			
+			"scalingRatio": 2
   },
   "cooldownSec": 6,
   "check_GU": true
@@ -104,7 +103,7 @@ db.GU_info.insertMany([
   "category": "TrinhSat",
   "food": "Máu",
   "consumption" : {
-    "type": "perSecond",
+    "type": "perSec",
     "amount": 0.25
   },
   "description": "Đánh hơi được mùi máu của các sinh vật sống.",
@@ -151,6 +150,69 @@ db.GU_info.insertMany([
     "hunger": 0,
     "hungerSpeed": 1.5
   }
-}
+},
+{
+  "code": "nguyet_mang_gu",
+  "name": "Nguyệt Mang Cổ",
+  "dao": "Light",
+  "tier": 2,
+  "category": "CongPhat",
+  "food": "canh_hoa_nguyet_lan",
+  "consumption" : {
+    "type": "OnUse",
+    "amount": 1
+  },
+  "description": "bắn ra 1 nguyệt nhận màu xanh đậm hơn. Sát thương cao hơn gấp 3 lần",
+  "drawbacks": "Tiêu hao chân nguyên cao. tầm tấn công không thay đổi.",
+  "effect": {
+	    "damage": {
+     	    "type": "magical",
+            "value": 150,
+            "scalingRatio": 0.3,
+            "cooldownSec": 1.0,
+            "areaType": "cone"
+    	    }
+           },
+ "stats": {
+    "durability": 100,
+    "willpower": 50,
+    "maxWillpower": 50,
+    "hunger": 0,
+    "hungerSpeed": 1.3
+  }
+},
+{
+  "code": "nguyet_nghe_thuong_gu",
+  "name": "Nguyệt Nghê Thường Cổ",
+  "dao": "Light",
+  "tier": 2,
+  "category": "PhongThu",
+  "food": "canh_hoa_nguyet_lan",
+  "consumption" : {
+    "type": "perSec",
+    "amount": 1.5
+  },
+  "description": "Tạo ra 1 vầng sáng màu xanh ngọc bao quanh người dùng lẫn đồng minh",
+  "drawbacks": "Tiêu tốn nhiều chân nguyên.",
+  "effect": {
+    "shield": {
+      "shield": {
+      "hp": 250,
+      "absorptionFlat": 80,
+      "absorptionRate": 0.4,
+      "type": "silk_mist",
+      "scalingRatio": 0.2,
+      "affectAllies": true
+    },
+    "durationSec": 25,
+    "cooldownSec": 50
+  },
+  "stats": {
+    "durability": 100,
+    "willpower": 50,
+    "maxWillpower": 50,
+    "hunger": 0,
+    "hungerSpeed": 0.5
+  }
 ]
 )
