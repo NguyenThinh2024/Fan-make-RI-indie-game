@@ -3,7 +3,7 @@ db.item_collection.insertMany([
 	"code": "nguyen_thach",
 	"name": "Nguyên Thạch",
 	"type": "currency",
-	"tags": ["energy", "craft"]
+	"tags": ["energy", "craft"],
 	"effect": {
     			"type": "restoreEnergy",    
     			"value": 50                   
@@ -34,7 +34,7 @@ db.item_collection.insertMany([
 	"type": "material",
 	"tags": ["jade", "craft"],
  	"usableAsResource": true,	
- 	"stackable": flase,
+ 	"stackable": false,
   	"maxStack": 1,
  	"pice": 100
 },

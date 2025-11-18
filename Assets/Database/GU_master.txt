@@ -1,0 +1,38 @@
+db.GU_master.insertOne(
+{
+  name: "Tuyết Đồng",						
+  "tier": 1,							//so chuyen
+  "stage": {"Initial"|"Middle"|"Upper"|"Peak"},
+  "aperture": 
+	[
+		{
+		"order": 1,
+   		"slot": 99,
+		"aperture_wall": {"Ánh Sáng"|"Nước"|"Đá"|"Thủy Tinh"},
+		"primevalEssence": 4.4,
+		}
+	]							
+  "aptitude": "Giáp"|"Ất"|"Bính"|"Đinh"|"Thập Tuyệt Thể", 	//mana res and stamina res
+  "stat": 
+	{
+  	"hp": 100,
+  	"hp_res": 0.1,
+	"strength": 20,
+  	"defense": 30,
+  	"resistance": 0.3,
+        "debuff": {"poisoned"|"parasitized"|"stunned"|"weakened"},
+  	"speed": 5,
+  	"critical_Damage": 0.5,
+  	"critical": 0.5,
+  	"luck": 0.1
+	},
+  "guList": [],
+  "guLife": {
+		"code": "nguyet_quang_gu"
+	     },
+  "inventory": [],
+  "killerMove": [{},{}],
+  "pos_x": 0, "pos_y": 0, "pos_z": 0,
+  "rotation":0
+}
+);

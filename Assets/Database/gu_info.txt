@@ -5,7 +5,10 @@ db.GU_info.insertMany([
   "dao": "Light",
   "tier": 1,
   "category": "CongPhat",
-  "food": "canh_hoa_nguyet_lan",
+  "feeding": {  "code":"canh_hoa_nguyet_lan",
+                "amount": 2,
+                "hungerRestore": 50
+          },
   "consumption": {
     "type": "onUse",
     "amount": 1
@@ -36,9 +39,11 @@ db.GU_info.insertMany([
   "dao": "Earth",
   "tier": 1,
   "category": "PhongThu",
-  "food": {
+  "feeding": {
 		"foodTags": ["jade"],
-		"description": "Ngọc các loại"
+		"description": "Ngọc các loại",
+                "amount": 2,
+                "hungerRestore": 50
 },
   "consumption" : {
     "type": "onUse",
@@ -62,7 +67,7 @@ db.GU_info.insertMany([
     "willpower": 50,
     "maxWillpower": 50,
     "hunger": 0,
-    "hungerSpeed": 0.5
+    "hungerSpeed": 0.2
   }
 },
 {
@@ -71,7 +76,10 @@ db.GU_info.insertMany([
   "dao": "Light",
   "tier": 1,
   "category": "PhuTro",
-  "food": "canh_hoa_nguyet_lan",
+    "feeding": {  "code":"canh_hoa_nguyet_lan",
+                "amount": 2,
+                "hungerRestore": 50
+          },
   "consumption" : {
     "type": "onUse",
     "amount": 0.5
@@ -101,7 +109,10 @@ db.GU_info.insertMany([
   "dao": "Blood",
   "tier": 1,
   "category": "TrinhSat",
-  "food": "Máu",
+  "feeding": {  "code":"HP",
+                "amount": 50,
+                "hungerRestore": 2
+          },
   "consumption" : {
     "type": "perSec",
     "amount": 0.25
@@ -121,7 +132,7 @@ db.GU_info.insertMany([
     "willpower": 50,
     "maxWillpower": 50,
     "hunger": 0,
-    "hungerSpeed": 1.5
+    "hungerSpeed": 2.5
   }
 },
 {
@@ -130,7 +141,10 @@ db.GU_info.insertMany([
   "dao": "Space",
   "tier": 1,
   "category": "TonTru",
-  "food": "Bùn",
+   "feeding": {  "code":"bun",
+                "amount": 5,
+                "hungerRestore": 20
+          },
   "consumption" : {
     "type": "OnUse",
     "amount": 0.25
@@ -157,7 +171,10 @@ db.GU_info.insertMany([
   "dao": "Light",
   "tier": 2,
   "category": "CongPhat",
-  "food": "canh_hoa_nguyet_lan",
+  "feeding": {  "code":"canh_hoa_nguyet_lan",
+                "amount": 5,
+                "hungerRestore": 20
+          },
   "consumption" : {
     "type": "OnUse",
     "amount": 1
@@ -187,7 +204,10 @@ db.GU_info.insertMany([
   "dao": "Light",
   "tier": 2,
   "category": "PhongThu",
-  "food": "canh_hoa_nguyet_lan",
+  "feeding": {  "code":"canh_hoa_nguyet_lan",
+                "amount": 5,
+                "hungerRestore": 20
+          },
   "consumption" : {
     "type": "perSec",
     "amount": 1.5
@@ -206,6 +226,7 @@ db.GU_info.insertMany([
     },
     "durationSec": 25,
     "cooldownSec": 50
+}
   },
   "stats": {
     "durability": 100,
@@ -214,5 +235,6 @@ db.GU_info.insertMany([
     "hunger": 0,
     "hungerSpeed": 0.5
   }
+}
 ]
 )
