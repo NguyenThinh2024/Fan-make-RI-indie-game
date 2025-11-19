@@ -1,0 +1,9 @@
+string GetApertureWall(string stage) {
+    return stage switch {
+        "Initial" => "Light",
+        "Middle" => "Water",
+        "Upper"  => "Stone",
+        "Peak"   => "Crystal",
+        _ => "Light"
+    };
+}

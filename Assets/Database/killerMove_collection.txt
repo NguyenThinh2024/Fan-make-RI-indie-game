@@ -1,0 +1,10 @@
+{
+  "_id": "killerMoves_001",
+  "player_id": "player_001",
+  "name": "Nguyệt Mang Trảm",
+  "steps": [
+    { "gu_code": "nguyet_quang_gu", "order": 1 },
+    { "gu_code": "tieu_quang_gu", "order": 2 }
+  ],
+  "description": "Tạo một lưỡi sáng chém rách mọi bóng tối."
+}

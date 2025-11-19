@@ -1,0 +1,183 @@
+db.Aptitude_collection.insertMany([
+  {
+    code: "Giap",
+    name: "Giáp",
+    tag: "normal",
+    minEssence: 8.0,
+    maxEssence: 9.8,
+    regenPerHour: 0.8,         // mana regen in aperture
+    staminaRegenBonus: 0.2,    // optional: stamina res %
+    description: "Aptitude cấp cao. Chân nguyên lớn, hồi phục nhanh."
+  },
+  {
+    code: "At",
+    name: "Ất",
+    tag: "normal",
+    minEssence: 6.0,
+    maxEssence: 7.9,
+    regenPerHour: 0.6,
+    staminaRegenBonus: 0.15,
+    description: "Aptitude khá. Chân nguyên trung bình, hồi phục tốt."
+  },
+  {
+    code: "Binh",
+    name: "Bính",
+    tag: "normal",
+    minEssence: 4.0,
+    maxEssence: 5.9,
+    regenPerHour: 0.4,
+    staminaRegenBonus: 0.1,
+    description: "Aptitude thường. Chân nguyên thấp, hồi phục chậm."
+  },
+  {
+    code: "Dinh",
+    name: "Đinh",
+    tag: "normal",
+    minEssence: 2.0,
+    maxEssence: 3.9,
+    regenPerHour: 0.2,
+    staminaRegenBonus: 0.05,
+    description: "Aptitude kém. Chân nguyên ít, hồi phục rất chậm."
+  },
+ {
+    code: "thai_nhat_duong_mang",
+    name: "Thái Nhật Dương Mãng",
+    tag: "special",
+    minEssence: 9.9,
+    maxEssence: 10.0,
+    regenPerHour: 1.0,
+    staminaRegenBonus: 0.3,
+    specialBonus: {
+      dao: ["Space", "Light"],
+      ratio: 0.25
+    },
+    description: "Cơ thể biến thái nhất. Tăng sức cực mạnh cho lưu phái cổ trùng Vũ Đạo (Space) và Quang Đạo (Light)."
+  },	
+  {
+    code: "co_nguyet_am_hoang",
+    name: "Cổ Nguyệt Âm Hoang",
+    tag: "special",
+    minEssence: 9.9,
+    maxEssence: 10.0,
+    regenPerHour: 1.0,
+    staminaRegenBonus: 0.3,
+    specialBonus: {
+      dao: ["Time", "Dark"],
+      ratio: 0.25
+    },
+    description: "Cơ thể biến thái nhất. Tăng sức cực mạnh cho lưu phái cổ trùng Trụ Đạo (time) và Ám Đạo (dark)."
+  },	
+  {
+    code: "bac_minh_bang_phac",
+    name: "Bắc Minh Băng Phách",
+    tag: "special",
+    minEssence: 9.9,
+    maxEssence: 10.0,
+    regenPerHour: 1.0,
+    staminaRegenBonus: 0.3,
+    specialBonus: {
+      dao: ["Ice", "Soul", "Water"],
+      ratio: 0.25
+    },
+    description: "Cơ thể biến thái nhất. Tăng sức cực mạnh cho lưu phái cổ trùng Thủy Đạo (Water) và Hồn Đạo (Soul)."
+  },
+  {
+    code: "sam_hai_luan_hoi",
+    name: "Sâm Hải Luân Hồi",
+    tag: "special",
+    minEssence: 9.9,
+    maxEssence: 10.0,
+    regenPerHour: 1.0,
+    staminaRegenBonus: 0.3,
+    specialBonus: {
+      dao: ["Wood", "Rule"],
+      ratio: 0.25
+    },
+    description: "Cơ thể biến thái nhất. Tăng sức cực mạnh cho lưu phái cổ trùng Mộc Đạo (Wood) và Luật Đạo (Rule)."
+  },
+  {
+    code: "viem_hoang_loi_trach",
+    name: "Viêm Hoàng Lôi Trạch",
+    tag: "special",
+    minEssence: 9.9,
+    maxEssence: 10.0,
+    regenPerHour: 1.0,
+    staminaRegenBonus: 0.3,
+    specialBonus: {
+      dao: ["Fire", "Lightning"],
+      ratio: 0.25
+    },
+    description: "Cơ thể biến thái nhất. Tăng sức cực mạnh cho lưu phái cổ trùng Hỏa Đạo (Fire) và Lôi Đạo (Lightning)."
+  },
+  {
+    code: "van_kim_dieu_hoa",
+    name: "Vạn Kim Diệu Hoa",
+    tag: "special",
+    minEssence: 9.9,
+    maxEssence: 10.0,
+    regenPerHour: 1.0,
+    staminaRegenBonus: 0.3,
+    specialBonus: {
+      dao: ["Metal", "Refinement"],
+      ratio: 0.25
+    },
+    description: "Cơ thể biến thái nhất. Tăng sức cực mạnh cho lưu phái cổ trùng Kim Đạo (Metal) và Luyện Đạo (Refinement)."
+  },
+  {
+    code: "dai_luc_chan_vu",
+    name: "Đại Lực Chân Vũ",
+    tag: "special",
+    minEssence: 9.9,
+    maxEssence: 10.0,
+    regenPerHour: 1.0,
+    staminaRegenBonus: 0.3,
+    specialBonus: {
+      dao: ["Strength", "Food"],
+      ratio: 0.25
+    },
+    description: "Cơ thể biến thái nhất. Tăng sức cực mạnh cho lưu phái cổ trùng Lực Đạo (Strength) và Thực Đạo (Food)."
+  },
+  {
+    code: "tieu_giao_tri_tam",
+    name: "Tiêu Dao Trí Tâm",
+    tag: "special",
+    minEssence: 9.9,
+    maxEssence: 10.0,
+    regenPerHour: 1.0,
+    staminaRegenBonus: 0.3,
+    specialBonus: {
+      dao: ["Wisdom", "Information"],
+      ratio: 0.25
+    },
+    description: "Cơ thể biến thái nhất. Tăng sức cực mạnh cho lưu phái cổ trùng Trí Đạo (Wisdom) và Tín Đạo (Information)."
+  },
+  {
+    code: "hau_tho_nguyen_uong",
+    name: "Hậu Thổ Nguyên Ương",
+    tag: "special",
+    minEssence: 9.9,
+    maxEssence: 10.0,
+    regenPerHour: 1.0,
+    staminaRegenBonus: 0.3,
+    specialBonus: {
+      dao: ["Earth", "Qi"],
+      ratio: 0.25
+    },
+    description: "Cơ thể biến thái nhất. Tăng sức cực mạnh cho lưu phái cổ trùng Thổ Đạo (Earth) và Khí Đạo (Qi)."
+  },
+
+  {
+    code: "vu_tru_dai_dien",
+    name: "Vũ Trụ Đại Diễn",
+    tag: "special",
+    minEssence: 9.9,
+    maxEssence: 10.0,
+    regenPerHour: 1.0,
+    staminaRegenBonus: 0.3,
+    specialBonus: {
+      dao: ["Space", "Time", "Rule"],
+      ratio: 0.25
+    },
+    description: "Cơ thể biến thái nhất. Tăng sức cực mạnh cho lưu phái cổ trùng Vũ Đạo (Space), Trụ Đạo (Time) và Luật Đạo (Rule)."
+  }
+]);

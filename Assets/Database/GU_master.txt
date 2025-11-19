@@ -1,18 +1,15 @@
 db.GU_master.insertOne(
 {
+  "_id": "player_001",
   name: "Tuyết Đồng",						
-  "tier": 1,							//so chuyen
-  "stage": {"Initial"|"Middle"|"Upper"|"Peak"},
-  "aperture": 
-	[
-		{
-		"order": 1,
-   		"slot": 99,
-		"aperture_wall": {"Ánh Sáng"|"Nước"|"Đá"|"Thủy Tinh"},
-		"primevalEssence": 4.4,
-		}
-	]							
-  "aptitude": "Giáp"|"Ất"|"Bính"|"Đinh"|"Thập Tuyệt Thể", 	//mana res and stamina res
+  "rank": 1,							
+  "stage": "Initial",							
+  "aptitude": 
+  {
+	code: "Binh",
+    	name: "Bính",
+  },
+  "aperture": "aperture_001",
   "stat": 
 	{
   	"hp": 100,
@@ -20,19 +17,22 @@ db.GU_master.insertOne(
 	"strength": 20,
   	"defense": 30,
   	"resistance": 0.3,
-        "debuff": {"poisoned"|"parasitized"|"stunned"|"weakened"},
+        "debuff": "none",
   	"speed": 5,
   	"critical_Damage": 0.5,
   	"critical": 0.5,
   	"luck": 0.1
 	},
-  "guList": [],
   "guLife": {
 		"code": "nguyet_quang_gu"
 	     },
+  "primevalStones": 1000,
   "inventory": [],
-  "killerMove": [{},{}],
-  "pos_x": 0, "pos_y": 0, "pos_z": 0,
-  "rotation":0
+  "killerMove_List": [{killerMove_id: "killerMoves_001"}],
+  "position": { "x": 0, "y": 0, "z": 0 },
+  "rotation": 0,
+
+  "created_at": "2025-01-01",
+  "last_login": "2025-01-02"
 }
 );
