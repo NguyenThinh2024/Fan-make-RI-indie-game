@@ -1,0 +1,270 @@
+[{
+  "_id": {
+    "$oid": "691bed5052d565a7395c296e"
+  },
+  "code": "nguyet_quang_gu",
+  "name": "Nguyệt Quang Cổ",
+  "dao": "Light",
+  "tier": 1,
+  "category": "CongPhat",
+  "feeding": {
+    "code": "canh_hoa_nguyet_lan",
+    "amount": 2,
+    "hungerRestore": 50
+  },
+  "consumption": {
+    "type": "onUse",
+    "amount": 1
+  },
+  "description": "Bắn ra 1 đạo sáng có khả năng cắt chém gây sát thương.",
+  "drawbacks": "Tiêu hao nhiều chân nguyên. ",
+  "effect": {
+    "damage": {
+      "type": "magical",
+      "value": 50,
+      "scalingRatio": 0.2,
+      "cooldownSec": 2,
+      "areaType": "cone"
+    }
+  },
+  "stats": {
+    "durability": 100,
+    "willpower": 50,
+    "maxWillpower": 50,
+    "hunger": 0,
+    "hungerSpeed": 1.5,
+    "critChance": 0.05
+  }
+},
+{
+  "_id": {
+    "$oid": "691bed5052d565a7395c296f"
+  },
+  "code": "ngoc_bi_gu",
+  "name": "Ngọc Bì Cổ",
+  "dao": "Earth",
+  "tier": 1,
+  "category": "PhongThu",
+  "feeding": {
+    "foodTags": [
+      "jade"
+    ],
+    "description": "Ngọc các loại",
+    "amount": 2,
+    "hungerRestore": 50
+  },
+  "consumption": {
+    "type": "onUse",
+    "amount": 6.4
+  },
+  "description": "Tạo ra 1 vầng sáng màu xanh ngọc bao quanh người dùng.",
+  "drawbacks": "Tiêu tốn nhiều chân nguyên.",
+  "effect": {
+    "shield": {
+      "hp": 100,
+      "type": "jade_barrier",
+      "absorbRate": 1,
+      "scalingRatio": 0.2,
+      "active": false
+    },
+    "durationSec": 25,
+    "cooldownSec": 50
+  },
+  "stats": {
+    "durability": 100,
+    "willpower": 50,
+    "maxWillpower": 50,
+    "hunger": 0,
+    "hungerSpeed": 0.2
+  }
+},
+{
+  "_id": {
+    "$oid": "691bed5052d565a7395c2970"
+  },
+  "code": "tieu_quang_gu",
+  "name": "Tiểu Quang Cổ",
+  "dao": "Light",
+  "tier": 1,
+  "category": "PhuTro",
+  "feeding": {
+    "code": "canh_hoa_nguyet_lan",
+    "amount": 2,
+    "hungerRestore": 50
+  },
+  "consumption": {
+    "type": "onUse",
+    "amount": 0.5
+  },
+  "description": "Tăng cường sức sát thương cho Nguyệt Quang Cổ.",
+  "drawbacks": "Không thể kích hoạt đơn lẻ",
+  "effect": {
+    "buff": {
+      "targetGu": "nguyet_quang_gu",
+      "stat": "damage",
+      "scalingRatio": 2
+    },
+    "cooldownSec": 6,
+    "check_GU": true
+  },
+  "stats": {
+    "durability": 100,
+    "willpower": 50,
+    "maxWillpower": 50,
+    "hunger": 0,
+    "hungerSpeed": 1.5
+  }
+},
+{
+  "_id": {
+    "$oid": "691bed5052d565a7395c2971"
+  },
+  "code": "huyet_ty_gu",
+  "name": "Huyết Tỵ Cổ",
+  "dao": "Blood",
+  "tier": 1,
+  "category": "TrinhSat",
+  "feeding": {
+    "code": "HP",
+    "amount": 50,
+    "hungerRestore": 2
+  },
+  "consumption": {
+    "type": "perSec",
+    "amount": 0.25
+  },
+  "description": "Đánh hơi được mùi máu của các sinh vật sống.",
+  "drawbacks": "Không biết chính xác số lượng cá thế, không phân biệt được người hay giả thú, dễ bị đánh lạc hướng",
+  "effect": {
+    "scoutRange": 30,
+    "revealDurationSec": 12,
+    "detectStealth": true,
+    "revealType": "partial",
+    "cooldownSec": 0.1,
+    "check_GU": true
+  },
+  "stats": {
+    "durability": 100,
+    "willpower": 50,
+    "maxWillpower": 50,
+    "hunger": 0,
+    "hungerSpeed": 2.5
+  }
+},
+{
+  "_id": {
+    "$oid": "691bed5052d565a7395c2972"
+  },
+  "code": "tam_nang_oa_gu",
+  "name": "Tam Nang Oa Cổ",
+  "dao": "Space",
+  "tier": 1,
+  "category": "TonTru",
+  "feeding": {
+    "code": "bun",
+    "amount": 5,
+    "hungerRestore": 20
+  },
+  "consumption": {
+    "type": "OnUse",
+    "amount": 0.25
+  },
+  "description": "Một con cóc nhỏ với 3 khoang riêng biệt, mỗi khoang chỉ chứa 1 vật phẩm.",
+  "drawbacks": "Không chứa cổ trùng, chân nguyên, hoặc vật sống.",
+  "effect": {
+    "slots": 3,
+    "deny": [
+      "food",
+      "gu",
+      "Primeval Essence"
+    ],
+    "cooldownSec": 0.1,
+    "check_GU": true
+  },
+  "stats": {
+    "durability": 100,
+    "willpower": 50,
+    "maxWillpower": 50,
+    "hunger": 0,
+    "hungerSpeed": 1.5
+  }
+},
+{
+  "_id": {
+    "$oid": "691bed5052d565a7395c2973"
+  },
+  "code": "nguyet_mang_gu",
+  "name": "Nguyệt Mang Cổ",
+  "dao": "Light",
+  "tier": 2,
+  "category": "CongPhat",
+  "feeding": {
+    "code": "canh_hoa_nguyet_lan",
+    "amount": 5,
+    "hungerRestore": 20
+  },
+  "consumption": {
+    "type": "OnUse",
+    "amount": 1
+  },
+  "description": "bắn ra 1 nguyệt nhận màu xanh đậm hơn. Sát thương cao hơn gấp 3 lần",
+  "drawbacks": "Tiêu hao chân nguyên cao. tầm tấn công không thay đổi.",
+  "effect": {
+    "damage": {
+      "type": "magical",
+      "value": 150,
+      "scalingRatio": 0.3,
+      "cooldownSec": 1,
+      "areaType": "cone"
+    }
+  },
+  "stats": {
+    "durability": 100,
+    "willpower": 50,
+    "maxWillpower": 50,
+    "hunger": 0,
+    "hungerSpeed": 1.3
+  }
+},
+{
+  "_id": {
+    "$oid": "691bed5052d565a7395c2974"
+  },
+  "code": "nguyet_nghe_thuong_gu",
+  "name": "Nguyệt Nghê Thường Cổ",
+  "dao": "Light",
+  "tier": 2,
+  "category": "PhongThu",
+  "feeding": {
+    "code": "canh_hoa_nguyet_lan",
+    "amount": 5,
+    "hungerRestore": 20
+  },
+  "consumption": {
+    "type": "perSec",
+    "amount": 1.5
+  },
+  "description": "Tạo ra 1 vầng sáng màu xanh ngọc bao quanh người dùng lẫn đồng minh",
+  "drawbacks": "Tiêu tốn nhiều chân nguyên.",
+  "effect": {
+    "shield": {
+      "shield": {
+        "hp": 250,
+        "absorptionFlat": 80,
+        "absorptionRate": 0.4,
+        "type": "silk_mist",
+        "scalingRatio": 0.2,
+        "affectAllies": true
+      },
+      "durationSec": 25,
+      "cooldownSec": 50
+    }
+  },
+  "stats": {
+    "durability": 100,
+    "willpower": 50,
+    "maxWillpower": 50,
+    "hunger": 0,
+    "hungerSpeed": 0.5
+  }
+}]

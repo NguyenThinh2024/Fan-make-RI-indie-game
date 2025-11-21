@@ -1,0 +1,73 @@
+[{
+  "_id": {
+    "$oid": "691bedffef8391c4b13bff42"
+  },
+  "code": "nguyen_thach",
+  "name": "Nguyên Thạch",
+  "type": "currency",
+  "tags": [
+    "energy",
+    "craft"
+  ],
+  "effect": {
+    "type": "restoreEnergy",
+    "value": 50
+  },
+  "usableAsResource": true,
+  "stackable": true,
+  "maxStack": 1000
+},
+{
+  "_id": {
+    "$oid": "691bedffef8391c4b13bff43"
+  },
+  "code": "canh_hoa_nguyet_lan",
+  "name": "Cánh Hoa Nguyệt Lan",
+  "type": "food_gu",
+  "tags": [
+    "herb"
+  ],
+  "effect": {
+    "type": "restoreDurability",
+    "value": 100
+  },
+  "durability": 100,
+  "brokenSpeed": 0.5,
+  "usableAsResource": true,
+  "stackable": true,
+  "maxStack": 100,
+  "pice": 0.1
+},
+{
+  "_id": {
+    "$oid": "691bedffef8391c4b13bff44"
+  },
+  "code": "vong_ngoc_bich",
+  "name": "Vòng Ngọc Bích",
+  "type": "material",
+  "tags": [
+    "jade",
+    "craft"
+  ],
+  "usableAsResource": true,
+  "stackable": false,
+  "maxStack": 1,
+  "pice": 100
+},
+{
+  "_id": {
+    "$oid": "691bedffef8391c4b13bff45"
+  },
+  "code": "bun",
+  "name": "Bùn",
+  "type": "gu_food",
+  "tags": [
+    "mud",
+    "craft"
+  ],
+  "durability": 100,
+  "brokenSpeed": 0.5,
+  "usableAsResource": true,
+  "stackable": true,
+  "maxStack": 10
+}]

@@ -1,0 +1,140 @@
+[{
+  "_id": {
+    "$oid": "691beef7079d4c8c5675f7b9"
+  },
+  "code": "nguyet_nghe_thuong_recipe_1",
+  "name": "Nguyệt Nghê Thường Cổ - Công Thức Hợp Luyện",
+  "targetGu": "nguyet_nghe_thuong_gu",
+  "tier": 2,
+  "difficulty": 1,
+  "successRateBase": 0.8,
+  "requirements": {
+    "minimumMindStrength": 20,
+    "minimumRealm": 1
+  },
+  "materials": [
+    {
+      "code": "ngoc_bi_cu",
+      "amount": 1
+    },
+    {
+      "code": "nguyet_quang_gu",
+      "amount": 1
+    },
+    {
+      "code": "nguyen_thach",
+      "amount": "variable"
+    }
+  ],
+  "steps": [
+    {
+      "order": 1,
+      "action": "invoke_gu",
+      "description": "Dùng ý chí thôi động 2 con cổ trùng.",
+      "failurePenalty": "injury_light"
+    },
+    {
+      "order": 2,
+      "action": "merge_will",
+      "description": "Dùng ý chí bản thân làm trung gian dung hòa cổ ý.",
+      "difficultyModifier": 0.2,
+      "failurePenalty": "injury_heavy"
+    },
+    {
+      "order": 3,
+      "action": "maintain_light",
+      "description": "Duy trì quầng sáng. Nếu gián đoạn là thất bại.",
+      "minigame": "hold_bar_stable",
+      "duration": 20
+    },
+    {
+      "order": 4,
+      "action": "throw_material",
+      "material": "nguyen_thach",
+      "repeat": "until_condense",
+      "timing": null,
+      "description": "Quăng nguyên thạch vào quầng sáng đến khi co lại."
+    }
+  ],
+  "extraBoosters": "null",
+  "outcome": {
+    "success": {
+      "code": "nguyet_nghe_thuong_gu",
+      "amount": 1
+    },
+    "failure": {
+      "guDestroyed": true,
+      "injuryLevel": 2
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "691beef7079d4c8c5675f7ba"
+  },
+  "code": "nguyet_mang_recipe_1",
+  "name": "Nguyệt Mang Cổ - Công Thức Hợp Luyện",
+  "targetGu": "nguyet_mang_gu",
+  "tier": 2,
+  "difficulty": 1,
+  "successRateBase": 0.8,
+  "requirements": {
+    "minimumMindStrength": 20,
+    "minimumRealm": 1
+  },
+  "materials": [
+    {
+      "code": "tieu_quang_gu",
+      "amount": 2
+    },
+    {
+      "code": "nguyet_quang_gu",
+      "amount": 1
+    },
+    {
+      "code": "nguyen_thach",
+      "amount": "variable"
+    }
+  ],
+  "steps": [
+    {
+      "order": 1,
+      "action": "invoke_gu",
+      "description": "Dùng ý chí thôi động 2 con cổ trùng.",
+      "failurePenalty": "injury_light"
+    },
+    {
+      "order": 2,
+      "action": "merge_will",
+      "description": "Dùng ý chí bản thân làm trung gian dung hòa cổ ý.",
+      "difficultyModifier": 0.2,
+      "failurePenalty": "injury_heavy"
+    },
+    {
+      "order": 3,
+      "action": "maintain_light",
+      "description": "Duy trì quầng sáng. Nếu gián đoạn là thất bại.",
+      "minigame": "hold_bar_stable",
+      "duration": 20
+    },
+    {
+      "order": 4,
+      "action": "throw_material",
+      "material": "nguyen_thach",
+      "repeat": "until_condense",
+      "timing": null,
+      "description": "Quăng nguyên thạch vào quầng sáng đến khi co lại."
+    }
+  ],
+  "extraBoosters": "null",
+  "outcome": {
+    "success": {
+      "code": "nguyet_nghe_thuong_gu",
+      "amount": 1
+    },
+    "failure": {
+      "guDestroyed": true,
+      "injuryLevel": 2
+    }
+  }
+}]

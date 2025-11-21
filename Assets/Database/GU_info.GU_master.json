@@ -1,0 +1,41 @@
+[{
+  "_id": "player_001",
+  "name": "Tuyết Đồng",
+  "rank": 1,
+  "stage": "Initial",
+  "aptitude": {
+    "code": "Binh",
+    "name": "Bính"
+  },
+  "aperture": "aperture_001",
+  "stat": {
+    "hp": 100,
+    "hp_res": 0.1,
+    "strength": 20,
+    "defense": 30,
+    "resistance": 0.3,
+    "debuff": "none",
+    "speed": 5,
+    "critical_Damage": 0.5,
+    "critical": 0.5,
+    "luck": 0.1
+  },
+  "guLife": {
+    "code": "nguyet_quang_gu"
+  },
+  "primevalStones": 1000,
+  "inventory": [],
+  "killerMove_List": [
+    {
+      "killerMove_id": "killerMoves_001"
+    }
+  ],
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "rotation": 0,
+  "created_at": "2025-01-01",
+  "last_login": "2025-01-02"
+}]
