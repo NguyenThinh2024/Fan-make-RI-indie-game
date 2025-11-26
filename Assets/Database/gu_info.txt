@@ -120,10 +120,12 @@ db.GU_info.insertMany([
   "description": "Đánh hơi được mùi máu của các sinh vật sống.",
   "drawbacks": "Không biết chính xác số lượng cá thế, không phân biệt được người hay giả thú, dễ bị đánh lạc hướng",
   "effect": {
-    "scoutRange": 30,        
-    "revealDurationSec": 12,
-    "detectStealth": true,
-    "revealType": "partial",
+	"scout": {
+    			"scoutRange": 30,        
+    			"revealDurationSec": 12,
+			"detectStealth": true,
+    			"revealType": "partial"
+		},
     "cooldownSec": 0.1,
     "check_GU": true  
   },
@@ -152,10 +154,12 @@ db.GU_info.insertMany([
   "description": "Một con cóc nhỏ với 3 khoang riêng biệt, mỗi khoang chỉ chứa 1 vật phẩm.",
   "drawbacks": "Không chứa cổ trùng, chân nguyên, hoặc vật sống.",
   "effect": {
-	    "slots": 3, 
-	    "deny": ["food", "gu", "Primeval Essence"],
-            "cooldownSec": 0.1,
-            "check_GU": true
+	    "storage": {
+	    		"slots": 3, 
+		    	"deny": ["food", "gu", "Primeval Essence"]
+			}
+            		"cooldownSec": 0.1,
+            		"check_GU": true
            },
  "stats": {
     "durability": 100,

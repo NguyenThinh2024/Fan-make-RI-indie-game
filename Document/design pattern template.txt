@@ -1,0 +1,147 @@
+**Game cổ chân nhân** = hệ thống phức tạp kinh dị:
+Cổ trùng → skill → luyện cổ → nguyên liệu → công thức → tiến cấp → chỉ số → AI → behavior → inventory → event → database JSON…
+Nếu không chọn đúng design pattern là *toang code*, sửa 1 chỗ vỡ 10 chỗ.
+
+Dưới đây là **bộ pattern ngon – chuẩn – thực chiến** cho RiPG kiểu Cổ Chân Nhân:
+
+---
+
+## 🔥 1. **Factory + ScriptableObject (SO Factory) — MUST HAVE**
+
+Để tạo ra hàng đống Cổ trùng, vật phẩm, skill, địch, công thức luyện chế…
+
+* `GUFactory` → trả về object GU đã khởi tạo từ database JSON hoặc SO
+* Không hardcode, không switch-case vô tận
+* Dễ thêm GU mới mà không đụng code
+
+**Dùng khi:**
+Cổ trùng có nhiều loại khác nhau → Beast, Healing, Trinh sát, Công phát, Support…
+
+---
+
+## 🔥 2. **Strategy Pattern — cho skill/behavior của Cổ**
+
+Quá hợp luôn.
+
+* Mỗi Cổ có **effect riêng** → damage, heal, buff, scout, summon ánh sáng…
+* Viết mỗi effect như 1 strategy → dễ mở rộng, không đụng code cũ
+* Dùng cho AI quái cũng được (Aggressive, Flee, Patrol…)
+
+**Ví dụ:**
+`IEffectStrategy` (damage), `IEffectStrategy` (scout), `IEffectStrategy` (buff)
+
+---
+
+## 🔥 3. **State Machine — cho các cảnh giới / trạng thái chiến đấu**
+
+Game Cổ Chân Nhân có **bậc cảnh giới** và trạng thái:
+
+* Đang hồi chân nguyên
+* Đang kích hoạt cổ
+* Đang bị đóng băng
+* Đang luyện cổ
+* Đang hấp thu nguyên thạch
+
+→ State Machine giúp đứng vững, khỏi spaghetti code.
+
+**Cảnh giới cũng nên dùng State:**
+Sơ giai → trung giai → cao giai → đỉnh phong → chuyển cấp → etc.
+
+---
+
+## 🔥 4. **Observer / Event Bus — cho event trong game**
+
+Kiểu:
+
+* "Kích hoạt cổ"
+* "Hunger giảm đến 0"
+* "Primeval Essence tăng"
+* "Luyện cổ thất bại → người chơi nhận dmg"
+* "Item pickup"
+
+Bro không muốn bắn event bằng `FindObjectOfType()` đâu, độc hại lắm.
+
+→ Event Bus / Observer là chân ái.
+
+---
+
+## 🔥 5. **Repository Pattern — cho database JSON / MongoDB**
+
+Giải quyết cái bộ CRUD mà bro đang muốn làm.
+
+`GURepository`
+`ItemRepository`
+`PlayerRepository`
+
+→ Load từ JSON (hoặc sau này đổi sang server) mà không đụng tí code gameplay nào.
+
+---
+
+## 🔥 6. **Component Pattern — cho stats của cổ, người chơi, quái**
+
+Kiểu ECS mini:
+
+* HealthComponent
+* WillpowerComponent
+* HungerComponent
+* EssenceComponent
+* InventoryComponent
+
+Rời từng phần → thay thế dễ → code gọn.
+
+*Đặc biệt hợp cho 1 game có cả trăm loại Cổ.*
+
+---
+
+## 🔥 7. **Command Pattern — cho hệ thống “ấn phím kích hoạt cổ”**
+
+Game Cổ Chân Nhân có nhiều GU được gán phím:
+Q – E – R – T – Y hoặc gán phím chuột.
+
+Command giúp làm:
+
+* Undo/redo (nếu cần)
+* Record skill combo
+* Input mapping gọn, không switch-case
+
+---
+
+## 📌 Vậy chọn cái nào?
+
+**Bro nên dùng combo này:**
+
+> **Factory + Strategy + State + Observer + Repository + Component**
+> Đây là bộ meta mạnh nhất cho các game hệ thống phức tạp (RPG, cultivation, Rogue-like…).
+
+Không cần dùng tất cả cùng lúc.
+Nhưng chắc chắn dùng 4 cái này:
+
+✔ Factory
+✔ Strategy
+✔ State Machine
+✔ Event/Observer
+là đã đủ đưa dự án vào “đúng hướng chuyên nghiệp”.
+
+---
+
+## 🔥 Tóm gọn như Gen Z:
+
+Muốn code game Cổ Chân Nhân cho ra dáng dev xịn?
+→ **Dùng Factory để đẻ Cổ**,
+→ **Strategy để xử lý skill**,
+→ **State Machine để quản cảnh giới**,
+→ **Observer để mọi thứ tự phát tín hiệu**,
+→ **Repository để CRUD với JSON**,
+→ **Component để chia nhỏ stats**.
+
+Không dùng mấy cái này → 3 tháng sau code tan nát, muốn thêm 1 loại cổ mới là sập.
+
+---
+
+Nếu bro muốn, tôi có thể viết luôn:
+
+* **Kiến trúc tổng thể** theo các pattern trên
+* **Code mẫu C# Unity** cho từng pattern
+* **Mẫu cho Cổ trùng + skill + loot + luyện trùng + AI**
+
+Chọn cái nào?
