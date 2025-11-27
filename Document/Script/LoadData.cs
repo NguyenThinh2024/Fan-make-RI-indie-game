@@ -1,0 +1,34 @@
+﻿using JetBrains.Annotations;
+using UnityEngine;
+
+public class LoadData : MonoBehaviour
+{
+    public Aperture[] apertures;
+    void Start()
+    {
+    
+        TextAsset jsonData = Resources.Load<TextAsset>("GU_data");
+        if (jsonData != null)
+        {
+            Debug.Log("Đã load file JSON!");
+            Debug.Log(jsonData.text); // In nội dung JSON lên console
+        }
+        else
+        {
+            Debug.LogError("Load thất bại: Không tìm thấy file! .");
+        }
+
+
+        string wrapped = "{ \"list\": " + jsonData.text + "}"; 
+
+        ApertureList wrapper = JsonUtility.FromJson<ApertureList>(wrapped);
+        apertures = wrapper.list;
+
+        Debug.Log("Loaded: " + apertures.Length);
+
+    }
+    public class ApertureList
+{
+    public Aperture[] list;
+}
+}

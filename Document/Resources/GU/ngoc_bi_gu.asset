@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4749bb0080f04bb408ac1eb78d300f0d, type: 3}
+  m_Name: ngoc_bi_gu
+  m_EditorClassIdentifier: 
+  code: ngoc_bi_gu
+  displayName: "Ng\u1ECDc B\xEC C\u1ED5"
+  dao: Earth
+  tier: 1
+  category: PhongThu
+  feedingCode: 
+  feedingTags:
+  - jade
+  feedingDescription: "Ng\u1ECDc c\xE1c lo\u1EA1i"
+  feedingAmount: 2
+  hungerRestore: 50
+  consumptionType: onUse
+  consumptionAmount: 6.4
+  description: "T\u1EA1o ra 1 v\u1EA7ng s\xE1ng m\xE0u xanh ng\u1ECDc bao quanh ng\u01B0\u1EDDi
+    d\xF9ng."
+  drawbacks: "Ti\xEAu t\u1ED1n nhi\u1EC1u ch\xE2n nguy\xEAn."
+  effect:
+    damage:
+      type: storage
+      value: 0
+      scalingRatio: 0
+      cooldownSec: 0
+      areaType: 
+    shield:
+      hp: 100
+      absorbRate: 1
+      absorptionFlat: 0
+      type: jade_barrier
+      scalingRatio: 0.2
+      affectAllies: 0
+    buff:
+      targetGu: 
+      stat: 
+      scalingRatio: 0
+    scout:
+      scoutRange: 0
+      revealDurationSec: 0
+      detectStealth: 0
+      revealType: 
+    storage:
+      slots: 0
+      deny: []
+    cooldownSec: 50
+    check_GU: 0
+  stats:
+    durability: 100
+    willpower: 50
+    maxWillpower: 50
+    hunger: 0
+    hungerSpeed: 0.2
+    critChance: 0
