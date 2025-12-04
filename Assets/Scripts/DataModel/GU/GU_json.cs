@@ -22,7 +22,7 @@ namespace GU_Json_Model
     public class Feeding
     {
         public string code;
-        public string[] foodTags;
+        public string[] tags;
         public string description;
         public int amount;
         public int hungerRestore;
