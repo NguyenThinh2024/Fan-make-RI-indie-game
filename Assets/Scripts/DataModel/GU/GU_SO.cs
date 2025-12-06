@@ -6,6 +6,9 @@ namespace GU_SO_Model
     {
         public string code;
         public string displayName;
+
+        public Sprite icon;
+
         public string dao;
         public int tier;
         public string category;
