@@ -1,15 +1,16 @@
 using UnityEngine;
-
-public interface IEffectStrategy
+namespace Gu_Effect_Systems
 {
-    string GetEffectName();
-    bool CanExecute(GameObject target);
-    void Execute(GameObject target, EffectContext context);
-}
+    public interface IEffectStrategy
+    {
+        string GetEffectName();
+        bool CanExecute(GameObject target);
+        void Execute(GameObject target, EffectContext context);
+    }
 
-public class EffectContext
-{
-            public float value;
+    public class EffectContext
+    {
+        public float value;
         public float scalingRatio;
         public float cooldownSec;
         public string type;
@@ -27,4 +28,6 @@ public class EffectContext
         public bool detectStealth;
         public string revealType;
 
+    }
 }
+

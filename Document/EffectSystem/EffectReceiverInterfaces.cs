@@ -41,7 +41,6 @@ namespace Game.GU.EffectSystem
     {
         void AddStorage(int slots, string[] deny);
     }
-
     // ============ IMPLEMENTATIONS ============
 
     /// <summary>
@@ -49,10 +48,7 @@ namespace Game.GU.EffectSystem
     /// </summary>
     public class SimpleHealth : MonoBehaviour, IDamageReceiver
     {
-        public float currentHealth = 100f;
-        public float maxHealth = 100f;
-
-        public void TakeDamage(float damage)
+        public void TakeDamage(float damage, float currentHealth, float maxHealth)
         {
             currentHealth -= damage;
             if (currentHealth <= 0)
@@ -63,7 +59,7 @@ namespace Game.GU.EffectSystem
             }
         }
 
-        public void Heal(float amount)
+        public void Heal(float amount, float currentHealth, float maxHealth)
         {
             currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
         }
@@ -74,8 +70,8 @@ namespace Game.GU.EffectSystem
     /// </summary>
     public class SimpleShield : MonoBehaviour, IShieldReceiver
     {
-        public float currentShield = 0f;
-        public float absorbRate = 0.5f;
+        public float currentShield;
+        public float absorbRate;
 
         public void AddShield(float amount, float absorbRate, bool affectAllies)
         {

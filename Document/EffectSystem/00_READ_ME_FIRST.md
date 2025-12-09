@@ -31,13 +31,13 @@ Tôi đã hoàn thành refactoring Effect System của bạn để sử dụng *
 
 ## 🎯 Lợi Ích Chính
 
-| Trước | Sau |
-|------|-----|
-| ❌ 10+ if-else checks | ✅ 1 method call |
-| ❌ Khó thêm effect | ✅ Copy 1 class |
-| ❌ Logic phân tán | ✅ Logic tập trung |
-| ❌ Khó test | ✅ Dễ test |
-| ❌ Khó maintain | ✅ Dễ maintain |
+| Trước                    | Sau |
+|------                    |-----|
+| ❌ 10+ if-else checks    | ✅ 1 method call |
+| ❌ Khó thêm effect       | ✅ Copy 1 class |
+| ❌ Logic phân tán        | ✅ Logic tập trung |
+| ❌ Khó test              | ✅ Dễ test |
+| ❌ Khó maintain          | ✅ Dễ maintain |
 
 ## 📚 Documentation Structure
 

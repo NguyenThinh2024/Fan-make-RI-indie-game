@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccfb8a5a1456e2e48b7554734ee2529f, type: 3}
+  m_Name: aperture_001
+  m_EditorClassIdentifier: 
+  code: aperture_001
+  playerId: player_001
+  apertureWall:
+    type: "\xC1nh S\xE1ng"
+    stability: 100
+    recovery_Rate: 0.1
+  primevalEssence:
+    primevalEssence_current: 4.4
+    primevalEssence_max: 4.4
+    primevalEssence_color: Green Copper
+  guList:
+  - order: 1
+    code: nguyet_quang_gu
+    usageCount: 0
+    bonusCrit: 0.1
+  stage: Initial
+  updatedAt: 2025-01-01T10:00:00Z

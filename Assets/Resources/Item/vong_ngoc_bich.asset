@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93b080099e0efcf458208ce9a119dc12, type: 3}
+  m_Name: vong_ngoc_bich
+  m_EditorClassIdentifier: 
+  code: vong_ngoc_bich
+  displayName: "V\xF2ng Ng\u1ECDc B\xEDch"
+  icon: {fileID: 0}
+  itemType: material
+  tags:
+  - jade
+  - craft
+  description: 
+  effect:
+    type: 
+    value: 0
+    durationSec: 0
+    affectStats: []
+  stackable: 0
+  maxStack: 1
+  usableAsResource: 1
+  usableInCraft: 0
+  craftWeight: 0

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ca0cac5fd846ee47b218904912ff81b, type: 3}
+  m_Name: nguyet_nghe_thuong_recipe_1
+  m_EditorClassIdentifier: 
+  code: nguyet_nghe_thuong_recipe_1
+  displayName: "Nguy\u1EC7t Ngh\xEA Th\u01B0\u1EDDng C\u1ED5 - C\xF4ng Th\u1EE9c
+    H\u1EE3p Luy\u1EC7n"
+  description: 
+  ingredients: []
+  method: 
+  baseSuccessRate: 0
+  timeSec: 0
+  requiredSkill: 
+  requiredLevel: 0
+  fuelCost: 0
+  possibleOutputs: []
+  applicableModifiers: []

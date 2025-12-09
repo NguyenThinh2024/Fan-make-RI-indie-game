@@ -32,9 +32,12 @@ public class GU_importer : EditorWindow
         {
             return;
         }
-        string folder = "Assets/Resources/GU/";
+        Import(jsonFile.text, "Assets/Resources/GU/");
+    }
 
-        if(Directory.Exists(folder))
+    public static void Import(string json, string folder)
+    {
+        if (Directory.Exists(folder))
         {
             FileUtil.DeleteFileOrDirectory(folder);
             FileUtil.DeleteFileOrDirectory(folder + ".meta");
@@ -42,41 +45,37 @@ public class GU_importer : EditorWindow
 
         Directory.CreateDirectory(folder);
 
-        string json = jsonFile.text;
         var wrapper = JsonHelper.FromJson<GU_json>(json);
 
         foreach (var gu in wrapper)
         {
             GU_SO so = ScriptableObject.CreateInstance<GU_SO>();
-                so.code = gu.code;
-                so.name = gu.name;
-                so.dao = gu.dao;
-                so.tier = gu.tier;
-                so.category = gu.category;
+            so.name = gu.code;
+            so.code = gu.code;
+            so.displayName = gu.name;
+            so.dao = gu.dao;
+            so.tier = gu.tier;
+            so.category = gu.category;
 
-                so.feedingCode = gu.feeding?.code;
-                so.feedingTags = gu.feeding?.tags;
-                so.feedingDescription = gu.feeding?.description;
-                so.feedingAmount = gu.feeding?.amount ?? 0;
-                so.hungerRestore = gu.feeding?.hungerRestore ?? 0;
+            so.feedingCode = gu.feeding?.code;
+            so.feedingTags = gu.feeding?.tags;
+            so.feedingDescription = gu.feeding?.description;
+            so.feedingAmount = gu.feeding?.amount ?? 0;
+            so.hungerRestore = gu.feeding?.hungerRestore ?? 0;
 
-                so.consumptionType = gu.consumption?.type;
-                so.consumptionAmount = gu.consumption?.amount ?? 0;
+            so.consumptionType = gu.consumption?.type;
+            so.consumptionAmount = gu.consumption?.amount ?? 0;
 
-                so.description = gu.description;
-                so.drawbacks = gu.drawbacks;
+            so.description = gu.description;
+            so.drawbacks = gu.drawbacks;
 
-                so.effect = gu.effect != null ? JsonUtility.FromJson<GU_SO_Model.Effect>(JsonUtility.ToJson(gu.effect)) : null;
+            so.effect = gu.effect != null ? JsonUtility.FromJson<GU_SO_Model.Effect>(JsonUtility.ToJson(gu.effect)) : null;
 
-                so.stats = gu.stats != null ? JsonUtility.FromJson<GU_SO_Model.Stats>(JsonUtility.ToJson(gu.stats)) : null;
-            AssetDatabase.CreateAsset(so, folder + so.code + ".asset");    
+            so.stats = gu.stats != null ? JsonUtility.FromJson<GU_SO_Model.Stats>(JsonUtility.ToJson(gu.stats)) : null;
+            AssetDatabase.CreateAsset(so, folder + so.code + ".asset");
         }
 
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
-
-        Debug.Log("<color=green>Imported GU JSON -> ScriptableObject OK!</color>");
-        
+        Debug.Log($"<color=green>Imported {wrapper.Length} GU from JSON!</color>");
     }
 
     public static class JsonHelper {
