@@ -1,3 +1,5 @@
+using System.Runtime.ExceptionServices;
+using Enemy_Json_Model;
 using UnityEngine;
 namespace Enemy_SO_Model
 {
@@ -6,18 +8,26 @@ namespace Enemy_SO_Model
     {
         public string code;
         public string displayName;
+        public string type; 
+        public int tier;
+        public string[] tags;
         public Sprite icon;
-
         [TextArea] public string description;
+
+        [Header("Feeding")]
+        public FeedingData feedingData;
 
         [Header("Stats")]
         public EnemyStats stats;
 
-        [Header("Aperture")]
-        public ApertureData aperture;
+        [Header("Gu List")]
+        public GuList[] gu;
 
-        [Header("Loot")]
+        [Header("Loot Table")]
         public LootTable[] lootTables;
+
+        [Header("Skills")]
+        public string[] Skills;
 
         [Header("AI")]
         public string aiType; // melee, ranged, mage, hybrid, etc.
@@ -29,7 +39,7 @@ namespace Enemy_SO_Model
     public class EnemyStats
     {
         public float health;
-        public float attack;
+        public float damage;
         public float defense;
         public float speed;
         public float willpower;
@@ -37,45 +47,26 @@ namespace Enemy_SO_Model
     }
 
     [System.Serializable]
-    public class ApertureData
+    public class FeedingData
     {
-        public string stage; // Early, Mid, Late
-        public ApertureWall aperture_wall;
-        public PrimevalEssence primevalEssence;
-        public GuItem[] guList;
+        public string[] foodTags;
     }
 
     [System.Serializable]
-    public class ApertureWall
+    public class GuList
     {
-        public string type;
-        public float stability;
-        public float recovery_Rate;
-    }
-
-    [System.Serializable]
-    public class PrimevalEssence
-    {
-        public float primevalEssence_current;
-        public float primevalEssence_max;
-        public string primevalEssence_color;
-    }
-
-    [System.Serializable]
-    public class GuItem
-    {
-        public int order;
         public string code;
-        public int usageCount;
-        public float bonusCrit;
+        public string effectType;
+        
+        public string trigger;
     }
 
     [System.Serializable]
     public class LootTable
     {
-        public string itemCode;
-        public int minQuantity;
-        public int maxQuantity;
-        public float chance;
+        public string code;
+        public float rate;
+        public int min;
+        public int max;
     }
 }

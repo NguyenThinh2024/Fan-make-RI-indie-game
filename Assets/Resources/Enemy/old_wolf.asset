@@ -14,28 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   code: old_wolf
   displayName: "S\xF3i Gi\xE0"
+  type: Beast
+  tier: 1
+  tags:
+  - Wolf
   icon: {fileID: 0}
   description: "M\u1ED9t con s\xF3i gi\xE0 y\u1EBFu nh\u01B0ng v\u1EABn li\u1EC1u
     m\u1EA1ng \u0111\u1EC3 sinh t\u1ED3n."
+  feedingData:
+    foodTags:
+    - meat
   stats:
-    health: 0
-    attack: 0
-    defense: 0
+    health: 100
+    damage: 10
+    defense: 2
     speed: 0.7
-    willpower: 0
-    critChance: 0
-  aperture:
-    stage: 
-    aperture_wall:
-      type: 
-      stability: 0
-      recovery_Rate: 0
-    primevalEssence:
-      primevalEssence_current: 0
-      primevalEssence_max: 0
-      primevalEssence_color: 
-    guList: []
-  lootTables: []
+    willpower: 20
+    critChance: 0.1
+  gu: []
+  lootTables:
+  - code: wolfs_raw_meat
+    rate: 0.5
+    min: 1
+    max: 2
+  Skills:
+  - wolf_bite
+  - wolf_scratch
   aiType: 
   detectRange: 0
   attackRange: 0

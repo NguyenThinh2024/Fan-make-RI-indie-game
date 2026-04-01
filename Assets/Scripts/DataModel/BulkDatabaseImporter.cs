@@ -8,7 +8,6 @@ public class BulkDatabaseImporter : EditorWindow
     private TextAsset itemJsonFile;
     private TextAsset recipeJsonFile;
     private TextAsset enemyJsonFile;
-    private TextAsset guMasterJsonFile;
     private TextAsset aptitudeJsonFile;
     private TextAsset apertureJsonFile;
     private bool autoRefresh = true;
@@ -41,9 +40,6 @@ public class BulkDatabaseImporter : EditorWindow
 
         enemyJsonFile = (TextAsset)EditorGUILayout.ObjectField(
             "Enemy JSON File", enemyJsonFile, typeof(TextAsset), false);
-
-        guMasterJsonFile = (TextAsset)EditorGUILayout.ObjectField(
-            "GUMaster JSON File", guMasterJsonFile, typeof(TextAsset), false);
 
         aptitudeJsonFile = (TextAsset)EditorGUILayout.ObjectField(
             "Aptitude JSON File", aptitudeJsonFile, typeof(TextAsset), false);
@@ -84,7 +80,6 @@ public class BulkDatabaseImporter : EditorWindow
         if (itemJsonFile != null) count++;
         if (recipeJsonFile != null) count++;
         if (enemyJsonFile != null) count++;
-        if (guMasterJsonFile != null) count++;
         if (aptitudeJsonFile != null) count++;
         if (apertureJsonFile != null) count++;
         return count;
@@ -128,14 +123,6 @@ public class BulkDatabaseImporter : EditorWindow
                 totalCount++;
                 EditorUtility.DisplayProgressBar("Importing Database", "Importing Enemy data...", 0.50f);
                 ImportEnemy(enemyJsonFile);
-                successCount++;
-            }
-
-            if (guMasterJsonFile != null)
-            {
-                totalCount++;
-                EditorUtility.DisplayProgressBar("Importing Database", "Importing GUMaster data...", 0.62f);
-                ImportGUMaster(guMasterJsonFile);
                 successCount++;
             }
 
@@ -197,11 +184,6 @@ public class BulkDatabaseImporter : EditorWindow
     private void ImportEnemy(TextAsset jsonFile)
     {
         Enemy_importer.Import(jsonFile.text, "Assets/Resources/Enemy/");
-    }
-
-    private void ImportGUMaster(TextAsset jsonFile)
-    {
-        GUMaster_importer.Import(jsonFile.text, "Assets/Resources/GUMaster/");
     }
 
     private void ImportAptitude(TextAsset jsonFile)

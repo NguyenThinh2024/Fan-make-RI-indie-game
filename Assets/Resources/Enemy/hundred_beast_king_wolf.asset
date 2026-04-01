@@ -14,29 +14,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   code: hundred_beast_king_wolf
   displayName: "B\xE1ch Lang V\u01B0\u01A1ng"
+  type: Beast
+  tier: 2
+  tags:
+  - Wolf
+  - Hundred Beast King
   icon: {fileID: 0}
   description: "Th\u1EE7 l\u0129nh c\u1EE7a b\u1EA7y s\xF3i, chi\u1EBFn l\u1EF1c
     t\u01B0\u01A1ng \u0111\u01B0\u01A1ng c\u1ED5 s\u01B0 Nh\u1ECB Chuy\u1EC3n \u0110\u1EC9nh
     Phong."
+  feedingData:
+    foodTags:
+    - meat
   stats:
-    health: 0
-    attack: 0
-    defense: 0
+    health: 500
+    damage: 30
+    defense: 10
     speed: 1.5
-    willpower: 0
-    critChance: 0
-  aperture:
-    stage: 
-    aperture_wall:
-      type: 
-      stability: 0
-      recovery_Rate: 0
-    primevalEssence:
-      primevalEssence_current: 0
-      primevalEssence_max: 0
-      primevalEssence_color: 
-    guList: []
-  lootTables: []
+    willpower: 80
+    critChance: 0.5
+  gu:
+  - code: huyet_ty_gu
+    effectType: passive
+    trigger: player_in_area
+  - code: lang_luc_gu
+    effectType: onUse
+    trigger: combat
+  lootTables:
+  - code: wolfs_raw_meat
+    rate: 0.7
+    min: 1
+    max: 4
+  - code: wolfs_eyes
+    rate: 0.5
+    min: 1
+    max: 2
+  - code: wolfs_fur
+    rate: 0.5
+    min: 1
+    max: 2
+  - code: wolfs_fang
+    rate: 0.5
+    min: 1
+    max: 2
+  - code: huyet_ty_gu
+    rate: 1
+    min: 1
+    max: 1
+  - code: lang_luc_gu
+    rate: 1
+    min: 1
+    max: 1
+  Skills:
+  - wolf_bite
+  - wolf_scratch
+  - wolf_howl
   aiType: 
   detectRange: 0
   attackRange: 0

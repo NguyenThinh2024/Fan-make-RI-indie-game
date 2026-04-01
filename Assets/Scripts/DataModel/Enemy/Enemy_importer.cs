@@ -3,6 +3,7 @@ using UnityEditor;
 using System.IO;
 using Enemy_SO_Model;
 using Enemy_Json_Model;
+using System.Net.Sockets;
 
 public class Enemy_importer : EditorWindow
 {
@@ -51,33 +52,59 @@ public class Enemy_importer : EditorWindow
         foreach (var enemy in enemies)
         {
             Enemy_SO so = ScriptableObject.CreateInstance<Enemy_SO>();
-            so.name = enemy.code;
             so.code = enemy.code;
             so.displayName = enemy.name;
+            so.type = enemy.type;
+            so.tier = enemy.tier;
             so.description = enemy.description;
+            so.tags = enemy.tags;
+            so.Skills = enemy.skills;
+
+            so.feedingData = enemy.feeding != null
+                ? JsonUtility.FromJson<Enemy_SO_Model.FeedingData>(JsonUtility.ToJson(enemy.feeding))
+                : null;
 
             so.stats = enemy.stats != null
                 ? JsonUtility.FromJson<Enemy_SO_Model.EnemyStats>(JsonUtility.ToJson(enemy.stats))
                 : null;
 
-            so.aperture = enemy.aperture != null
-                ? JsonUtility.FromJson<Enemy_SO_Model.ApertureData>(JsonUtility.ToJson(enemy.aperture))
-                : null;
-
-            // Convert loot tables
-            if (enemy.lootTables != null)
+            // Copy guList directly
+            if (enemy.guList != null && enemy.guList.Length > 0)
             {
-                so.lootTables = new Enemy_SO_Model.LootTable[enemy.lootTables.Length];
-                for (int i = 0; i < enemy.lootTables.Length; i++)
+                so.gu = new Enemy_SO_Model.GuList[enemy.guList.Length];
+                for (int i = 0; i < enemy.guList.Length; i++)
+                {
+                    so.gu[i] = new Enemy_SO_Model.GuList
+                    {
+                        code = enemy.guList[i].code,
+                        effectType = enemy.guList[i].effectType,
+                        trigger = enemy.guList[i].trigger
+                    };
+                }
+            }
+            else
+            {
+                so.gu = null;
+            }
+
+            // Copy drops directly
+            if (enemy.drops != null && enemy.drops.Length > 0)
+            {
+                so.lootTables = new Enemy_SO_Model.LootTable[enemy.drops.Length];
+                for (int i = 0; i < enemy.drops.Length; i++)
                 {
                     so.lootTables[i] = new Enemy_SO_Model.LootTable
                     {
-                        itemCode = enemy.lootTables[i].itemCode,
-                        minQuantity = enemy.lootTables[i].minQuantity,
-                        maxQuantity = enemy.lootTables[i].maxQuantity,
-                        chance = enemy.lootTables[i].chance
+                        code = enemy.drops[i].code,
+                        rate = enemy.drops[i].rate,
+                        min = enemy.drops[i].min,
+                        max = enemy.drops[i].max
                     };
                 }
+            }
+            else
+            {
+                so.lootTables = null;
             }
 
             so.aiType = enemy.aiType;

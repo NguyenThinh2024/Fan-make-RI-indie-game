@@ -50,7 +50,6 @@ public class GU_importer : EditorWindow
         foreach (var gu in wrapper)
         {
             GU_SO so = ScriptableObject.CreateInstance<GU_SO>();
-            so.name = gu.code;
             so.code = gu.code;
             so.displayName = gu.name;
             so.dao = gu.dao;

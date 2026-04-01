@@ -51,7 +51,6 @@ public class Recipe_importer : EditorWindow
         foreach (var recipe in recipes)
         {
             Recipe_SO so = ScriptableObject.CreateInstance<Recipe_SO>();
-            so.name = recipe.code;
             so.code = recipe.code;
             so.displayName = recipe.name;
             so.description = recipe.description;

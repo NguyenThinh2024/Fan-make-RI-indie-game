@@ -51,7 +51,6 @@ public class Item_importer : EditorWindow
         foreach (var item in items)
         {
             Item_SO so = ScriptableObject.CreateInstance<Item_SO>();
-            so.name = item.code;
             so.code = item.code;
             so.displayName = item.name;
             so.itemType = item.type;

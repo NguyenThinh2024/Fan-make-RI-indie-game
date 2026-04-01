@@ -1,3 +1,4 @@
+using GU_Json_Model;
 using UnityEngine;
 
 namespace Enemy_Json_Model
@@ -7,68 +8,57 @@ namespace Enemy_Json_Model
     {
         public string code;
         public string name;
+        public string type;
+
+        public string [] tags;
+        public int tier;
         public string description;
 
-        public EnemyStats stats;
-        public ApertureData aperture;
-        public LootTable[] lootTables;
-
+        public string[] skills;
         public string aiType;
         public float detectRange;
         public float attackRange;
+
+        public EnemyStats stats;
+
+        public Feeding feeding;
+
+        public GuList[] guList;
+
+        public LootTable[] drops;
     }
 
     [System.Serializable]
     public class EnemyStats
     {
         public float health;
-        public float attack;
+        public float damage;
         public float defense;
-        public float speed;
+        public float speed; 
         public float willpower;
         public float critChance;
     }
 
     [System.Serializable]
-    public class ApertureData
+    public class Feeding
     {
-        public string stage;
-        public ApertureWall aperture_wall;
-        public PrimevalEssence primevalEssence;
-        public GuItem[] guList;
+        public string[] foodTags;
     }
 
     [System.Serializable]
-    public class ApertureWall
+    public class GuList
     {
-        public string type;
-        public float stability;
-        public float recovery_Rate;
-    }
-
-    [System.Serializable]
-    public class PrimevalEssence
-    {
-        public float primevalEssence_current;
-        public float primevalEssence_max;
-        public string primevalEssence_color;
-    }
-
-    [System.Serializable]
-    public class GuItem
-    {
-        public int order;
         public string code;
-        public int usageCount;
-        public float bonusCrit;
+        public string effectType;
+        public string trigger;
     }
 
     [System.Serializable]
     public class LootTable
     {
-        public string itemCode;
-        public int minQuantity;
-        public int maxQuantity;
-        public float chance;
+        public string code;
+        public float rate;
+        public int min;
+        public int max;
     }
 }
